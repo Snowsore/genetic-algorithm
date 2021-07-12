@@ -102,8 +102,7 @@
     // ********************
 
     function sphereModel(p) {
-        var {x, y} = pos(p)
-        return x * x + y * y
+        return p.reduce((acc, x) => acc + Math.pow(x, 2), 0)
     }
 
     function rosenbrocksValley(p) {
@@ -134,7 +133,7 @@
     }
 
     function rastrigins(p) {
-        return 10 * arr.length + arr.reduce((acc, x) => acc + Math.pow(x, 2) - 10 * Math.cos(2 * Math.PI * x))
+        return 10 * p.length + p.reduce((acc, x) => acc + Math.pow(x, 2) - 10 * Math.cos(2 * Math.PI * x), 0)
     }
 
     // ********************
@@ -149,7 +148,7 @@
     function reset() {
         
         // Generate random population
-        for(let i = 0; i < 5000; i++) {
+        for(let i = 0; i < 2000; i++) {
             population[i] = [Math.random(), Math.random()]
             graph.setData(population)
         }
